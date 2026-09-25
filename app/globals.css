@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-beton: #e4e6e3;
+  --color-panel: #f6f7f5;
+  --color-garis: #c9cdc8;
+  --color-tinta: #1d2b33;
+  --color-redup: #5b6760;
+  --color-rambu: #f2c230;
+  --color-proses: #2f6690;
+  --color-kirim: #3c6e47;
+  --color-selesai: #6e7873;
+  --font-sans: var(--font-archivo);
+}
+
+body {
+  background: var(--color-beton);
+  color: var(--color-tinta);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+}
+
+.angka {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-rambu);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,319 @@
+[
+  {
+    "id": 1,
+    "pesan": "Selamat pagi Pak, saya mau pesan Semen Tiga Roda 50kg sebanyak 20 sak dan Pasir Cor 2 kubik. Mohon dikirim ke Jl. Melati No. 5, Cibubur. Terima kasih.",
+    "expected": [
+      { "sku": "SMN-TR-50", "qty": 20 },
+      { "sku": "PSR-COR-M3", "qty": 2 }
+    ],
+    "catatan_pengiriman": "Jl. Melati No. 5, Cibubur",
+    "tingkat_kesulitan": "mudah"
+  },
+  {
+    "id": 2,
+    "pesan": "semen gresik 10 sak, bata merah 1000. kirim ke proyek pak budi jl kenanga 12 bekasi",
+    "expected": [
+      { "sku": "SMN-GR-40", "qty": 10 },
+      { "sku": "BTA-MRH", "qty": 1000 }
+    ],
+    "catatan_pengiriman": "proyek pak budi, jl. kenanga 12 bekasi",
+    "tingkat_kesulitan": "mudah"
+  },
+  {
+    "id": 3,
+    "pesan": "Pak, triplek 9mm 15 lembar sama kaso 5/7 30 batang ya. Diantar ke rumah Bu Sari, Perum Griya Asri blok C3 no 7 Depok",
+    "expected": [
+      { "sku": "TPL-09", "qty": 15 },
+      { "sku": "KYU-KSU-57", "qty": 30 }
+    ],
+    "catatan_pengiriman": "rumah Bu Sari, Perum Griya Asri blok C3 no 7, Depok",
+    "tingkat_kesulitan": "mudah"
+  },
+  {
+    "id": 4,
+    "pesan": "Order gan:\n1. besi 10 full 40 btg\n2. besi 8 full 60 btg\n3. bendrat 10 kg\n4. semen TR 50 25 sak\nKirim ke proyek ruko Jl. Raya Bogor km 30, ketemu mandor Joko",
+    "expected": [
+      { "sku": "BSI-10-SNI", "qty": 40 },
+      { "sku": "BSI-08-SNI", "qty": 60 },
+      { "sku": "KWT-BDT", "qty": 10 },
+      { "sku": "SMN-TR-50", "qty": 25 }
+    ],
+    "catatan_pengiriman": "proyek ruko Jl. Raya Bogor km 30, ketemu mandor Joko",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 5,
+    "pesan": "bos psn smen tigaroda 50 kg 15 sak pasir psang stgh kubik ama bt merah 500 biji kirim ke gg haji naim rt 03 rw 05 cipayung",
+    "expected": [
+      { "sku": "SMN-TR-50", "qty": 15 },
+      { "sku": "PSR-PSG-M3", "qty": 0.5 },
+      { "sku": "BTA-MRH", "qty": 500 }
+    ],
+    "catatan_pengiriman": "gg. haji naim rt 03 rw 05, cipayung",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 6,
+    "pesan": "Mas, aku pesen pacul loro karo ember cor limang iji yo. Dikirim neng omahe Pak Harto, Jl. Mawar 21 Bekasi Timur. Suwun",
+    "expected": [
+      { "sku": "ALT-CGK", "qty": 2 },
+      { "sku": "ALT-EMBR", "qty": 5 }
+    ],
+    "catatan_pengiriman": "rumah Pak Harto, Jl. Mawar 21, Bekasi Timur",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 7,
+    "pesan": "Punten A, bade mesen hebel 10 dua kubik sareng MU 380 opat sak. Kintun ka Jl. Cempaka 8, Cileungsi nya. Hatur nuhun",
+    "expected": [
+      { "sku": "HBL-10-M3", "qty": 2 },
+      { "sku": "SMN-MU-40", "qty": 4 }
+    ],
+    "catatan_pengiriman": "Jl. Cempaka 8, Cileungsi",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 8,
+    "pesan": "Bang, gua mau ambil paku 7 cm 5 kilo, paku 5 cm 3 kilo, ama paku beton 2 dus. Kagak usah dikirim, ntar gua ambil sendiri sore",
+    "expected": [
+      { "sku": "PKU-7CM", "qty": 5 },
+      { "sku": "PKU-5CM", "qty": 3 },
+      { "sku": "PKU-BTN", "qty": 2 }
+    ],
+    "catatan_pengiriman": "diambil sendiri sore hari (tidak dikirim)",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 9,
+    "pesan": "Pak tolong siapkan semen dynamix dua puluh lima sak, besi dua belas full delapan belas batang, sama batu split tiga kubik. Kirim besok pagi ke proyek gudang Pak Hendra, Jl. Industri 3 Cikarang",
+    "expected": [
+      { "sku": "SMN-DX-40", "qty": 25 },
+      { "sku": "BSI-12-SNI", "qty": 18 },
+      { "sku": "BTU-SPL-M3", "qty": 3 }
+    ],
+    "catatan_pengiriman": "besok pagi, proyek gudang Pak Hendra, Jl. Industri 3 Cikarang",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 10,
+    "pesan": "hebel 3 kubik sama semen instan 6 sak ya kirim ke jl anggrek 4",
+    "expected": [
+      { "ambigu": true, "teks": "hebel 3 kubik", "alasan": "tebal hebel tidak disebut (7,5cm atau 10cm)" },
+      { "sku": "SMN-MU-40", "qty": 6 }
+    ],
+    "catatan_pengiriman": "jl. anggrek 4",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 11,
+    "pesan": "Pak ada closet duduk toto ga? kalo ada 1 unit. Sama pralon 4 dim 6 batang dan keni 3 dim 10 biji",
+    "expected": [
+      { "ambigu": true, "teks": "closet duduk toto 1 unit", "alasan": "tidak ada di katalog" },
+      { "sku": "PPA-RCK-4", "qty": 6 },
+      { "sku": "FTG-ELB-3", "qty": 10 }
+    ],
+    "catatan_pengiriman": null,
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 12,
+    "pesan": "[08.12] pak pesan semen tiga roda 20 sak sama pasir cor 1 rit\n[08.15] kirim ke proyek pak budi jl melati 5\n[08.40] eh yang semen tadi jadi 30 aja pak",
+    "expected": [
+      { "sku": "SMN-TR-50", "qty": 30 },
+      { "sku": "PSR-COR-RIT", "qty": 1 }
+    ],
+    "catatan_pengiriman": "kirim ke proyek pak budi, jl. melati 5",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 13,
+    "pesan": "Cat avitex 5kg 4 galon, cat no drop 2 kaleng. Kirim ke Toko Maju Jaya Jl. Pemuda 88 Rawamangun",
+    "expected": [
+      { "sku": "CAT-AVT-5", "qty": 4 },
+      { "sku": "CAT-NDP-4", "qty": 2 }
+    ],
+    "catatan_pengiriman": "Toko Maju Jaya, Jl. Pemuda 88, Rawamangun",
+    "tingkat_kesulitan": "mudah"
+  },
+  {
+    "id": 14,
+    "pesan": "Siang pak. Mau tanya stok granit 60x60 indogres. Kalo ada saya ambil 12 dus. Nat nya sekalian 10 bungkus. Dianter ke Cluster Bougenville no 15 BSD ya pak.",
+    "expected": [
+      { "sku": "GRN-IDG-60", "qty": 12 },
+      { "sku": "NAT-AM", "qty": 10 }
+    ],
+    "catatan_pengiriman": "Cluster Bougenville no 15, BSD",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 15,
+    "pesan": "rangka atap: c75 45 batang, reng 0.45 60 batang, skrup roofing 2 dus, spandek 0,3 total 80 meter. kirim ke jl. dahlia 3 tangerang selatan",
+    "expected": [
+      { "sku": "BJR-C75", "qty": 45 },
+      { "sku": "BJR-RNG-45", "qty": 60 },
+      { "sku": "SKR-BJR", "qty": 2 },
+      { "sku": "BJR-SPD-030", "qty": 80 }
+    ],
+    "catatan_pengiriman": "jl. dahlia 3, tangerang selatan",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 16,
+    "pesan": "besi 10 50 batang sama besi 6 banci 100 batang kirim sore ini ke proyek cilandak",
+    "expected": [
+      { "ambigu": true, "teks": "besi 10 50 batang", "alasan": "tidak jelas besi 10 full SNI atau banci" },
+      { "sku": "BSI-06-BCI", "qty": 100 }
+    ],
+    "catatan_pengiriman": "sore ini, proyek cilandak",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 17,
+    "pesan": "Mas, semen tiga roda patang puluh kilo sepuluh sak, bata ringan pitu setengah telung kubik, kirim ning Jl. Kalimalang 9",
+    "expected": [
+      { "sku": "SMN-TR-40", "qty": 10 },
+      { "sku": "HBL-075-M3", "qty": 3 }
+    ],
+    "catatan_pengiriman": "Jl. Kalimalang 9",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 18,
+    "pesan": "Pipa rucika 3/4 20 batang, 1/2 20 batang, sok drat dalam 1/2 30 pcs",
+    "expected": [
+      { "sku": "PPA-RCK-075", "qty": 20 },
+      { "sku": "PPA-RCK-05", "qty": 20 },
+      { "sku": "FTG-SDD-05", "qty": 30 }
+    ],
+    "catatan_pengiriman": null,
+    "tingkat_kesulitan": "mudah"
+  },
+  {
+    "id": 19,
+    "pesan": "gan ordr trplek 12 mili 10 lmbr, triplek 3 mili 20lmbr, reng kayu 50 btg, paku 5cm 2kg. antar ke rmh jl.nangka no2 depok",
+    "expected": [
+      { "sku": "TPL-12", "qty": 10 },
+      { "sku": "TPL-03", "qty": 20 },
+      { "sku": "KYU-RNG-23", "qty": 50 },
+      { "sku": "PKU-5CM", "qty": 2 }
+    ],
+    "catatan_pengiriman": "rumah jl. nangka no 2, depok",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 20,
+    "pesan": "pasir 1 rit sama batu kali 5 kubik kirim ke kavling pak rahmat, sawangan",
+    "expected": [
+      { "ambigu": true, "teks": "pasir 1 rit", "alasan": "jenis pasir tidak disebut (cor atau urug)" },
+      { "sku": "BTU-KAL-M3", "qty": 5 }
+    ],
+    "catatan_pengiriman": "kavling pak rahmat, sawangan",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 21,
+    "pesan": "Tolong kirim seratus lima puluh batako press, dua sak semen gresik, dan satu gerobak sorong ke Jl. Flamboyan 17 Bogor",
+    "expected": [
+      { "sku": "BKO-PRS", "qty": 150 },
+      { "sku": "SMN-GR-40", "qty": 2 },
+      { "sku": "ALT-GRB", "qty": 1 }
+    ],
+    "catatan_pengiriman": "Jl. Flamboyan 17, Bogor",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 22,
+    "pesan": "pak order ya: keramik platinum 40x40 20 dus, nat 5 bungkus, semen tiga roda 10 sak\n\nkirim ke perum taman sari blok F no 2 bekasi\n\nmaaf pak nat nya ga jadi, semen jadi 12 sak ya",
+    "expected": [
+      { "sku": "KRM-PLT-40", "qty": 20 },
+      { "sku": "SMN-TR-50", "qty": 12 }
+    ],
+    "catatan_pengiriman": "perum taman sari blok F no 2, bekasi",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 23,
+    "pesan": "Bang, cat catylac 25 kilo 2 pail ye, ama cat avian kayu besi 1 kilo 3 kaleng. Anterin ke rumah engkong di Jl. Kemuning 12 Condet",
+    "expected": [
+      { "sku": "CAT-CTL-25", "qty": 2 },
+      { "sku": "CAT-AVN-1", "qty": 3 }
+    ],
+    "catatan_pengiriman": "rumah engkong, Jl. Kemuning 12, Condet",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 24,
+    "pesan": "semen 20 sak, genteng keramik kanmuri 500 biji, keramik mulia 30x30 kasar 8 dus. kirim ke jl. merpati 9",
+    "expected": [
+      { "ambigu": true, "teks": "semen 20 sak", "alasan": "merek/ukuran semen tidak disebut" },
+      { "ambigu": true, "teks": "genteng keramik kanmuri 500 biji", "alasan": "tidak ada di katalog" },
+      { "sku": "KRM-MLA-30", "qty": 8 }
+    ],
+    "catatan_pengiriman": "jl. merpati 9",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 25,
+    "pesan": "Pesan pasir urug 2 rit untuk urugan halaman, kirim ke Jl. Sukun 4 Cimanggis",
+    "expected": [
+      { "sku": "PSR-URG-RIT", "qty": 2 }
+    ],
+    "catatan_pengiriman": "Jl. Sukun 4, Cimanggis",
+    "tingkat_kesulitan": "mudah"
+  },
+  {
+    "id": 26,
+    "pesan": "kang, abdi peryogi keni 3 dim 6 siki, pralon 3 dim 8 btg, pralon 4 dim 4 btg. kirim ka Jl Pajajaran 20 Bogor",
+    "expected": [
+      { "sku": "FTG-ELB-3", "qty": 6 },
+      { "sku": "PPA-RCK-3", "qty": 8 },
+      { "sku": "PPA-RCK-4", "qty": 4 }
+    ],
+    "catatan_pengiriman": "Jl. Pajajaran 20, Bogor",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 27,
+    "pesan": "Pak, ember cor selusin, cangkul setengah lusin, bendrat 5 kilo. Anter ke gudang proyek Jl. Siliwangi 7 Pamulang",
+    "expected": [
+      { "sku": "ALT-EMBR", "qty": 12 },
+      { "sku": "ALT-CGK", "qty": 6 },
+      { "sku": "KWT-BDT", "qty": 5 }
+    ],
+    "catatan_pengiriman": "gudang proyek Jl. Siliwangi 7, Pamulang",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 28,
+    "pesan": "paku 3 kg sama cat tembok putih 2 galon trus kaso 20 batang kirim ke jl melon 3",
+    "expected": [
+      { "ambigu": true, "teks": "paku 3 kg", "alasan": "ukuran paku tidak disebut (5cm, 7cm, atau paku beton)" },
+      { "ambigu": true, "teks": "cat tembok putih 2 galon", "alasan": "merek cat tidak disebut" },
+      { "sku": "KYU-KSU-57", "qty": 20 }
+    ],
+    "catatan_pengiriman": "jl. melon 3",
+    "tingkat_kesulitan": "sulit"
+  },
+  {
+    "id": 29,
+    "pesan": "Selamat siang, berikut PO dari CV Karya Bangun:\n1) Besi beton 12 mm full SNI – 30 batang\n2) Besi beton 10 mm banci – 50 batang\n3) Kawat bendrat – 15 kg\n4) Semen Dynamix 40 kg – 40 sak\nPengiriman ke proyek Perumahan Citra Asri, Jl. Raya Narogong Km 12, PIC: Pak Andi.",
+    "expected": [
+      { "sku": "BSI-12-SNI", "qty": 30 },
+      { "sku": "BSI-10-BCI", "qty": 50 },
+      { "sku": "KWT-BDT", "qty": 15 },
+      { "sku": "SMN-DX-40", "qty": 40 }
+    ],
+    "catatan_pengiriman": "proyek Perumahan Citra Asri, Jl. Raya Narogong Km 12, PIC Pak Andi",
+    "tingkat_kesulitan": "sedang"
+  },
+  {
+    "id": 30,
+    "pesan": "[10.02] mas pesan hebel 10 empat kubik\n[10.03] mu 380 delapan sak\n[10.20] hebelnya kurangi satu kubik aja mas, mu nya tambah dua\n[10.21] kirim ke jl. teratai 11 cibinong",
+    "expected": [
+      { "sku": "HBL-10-M3", "qty": 3 },
+      { "sku": "SMN-MU-40", "qty": 10 }
+    ],
+    "catatan_pengiriman": "jl. teratai 11, cibinong",
+    "tingkat_kesulitan": "sulit"
+  }
+]

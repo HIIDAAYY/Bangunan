@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Supabase: DATABASE_URL = pooler (port 6543, ?pgbouncer=true), DIRECT_URL = koneksi langsung (5432) untuk migrasi.
+  directUrl = env("DIRECT_URL")
+}
+
+enum OrderStatus {
+  BARU
+  DIPROSES
+  DIKIRIM
+  SELESAI
+}
+
+model Customer {
+  id        Int      @id @default(autoincrement())
+  phone     String   @unique
+  name      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  orders    Order[]
+
+  @@map("customers")
+}
+
+model Product {
+  sku        String      @id
+  nama       String
+  kategori   String
+  satuan     String
+  harga      Int
+  alias      String[]
+  aktif      Boolean     @default(true)
+  urutan     Int         @default(0) // urutan tampil (mengikuti data/catalog.json)
+  updatedAt  DateTime    @updatedAt @map("updated_at")
+  orderItems OrderItem[]
+
+  @@map("products")
+}
+
+model Order {
+  id                Int         @id @default(autoincrement())
+  customerId        Int         @map("customer_id")
+  customer          Customer    @relation(fields: [customerId], references: [id])
+  status            OrderStatus @default(BARU)
+  catatanPengiriman String?     @map("catatan_pengiriman")
+  total             Int
+  sumber            String      @default("whatsapp") // whatsapp | simulator
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime    @updatedAt @map("updated_at")
+  items             OrderItem[]
+
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id          Int     @id @default(autoincrement())
+  orderId     Int     @map("order_id")
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  sku         String
+  product     Product @relation(fields: [sku], references: [sku])
+  nama        String
+  satuan      String
+  qty         Float
+  hargaSatuan Int     @map("harga_satuan")
+  subtotal    Int
+
+  @@map("order_items")
+}
+
+model Conversation {
+  phone           String   @id
+  state           Json
+  lastMessageSid  String?  @map("last_message_sid")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("conversations")
+}

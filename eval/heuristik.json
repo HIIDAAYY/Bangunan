@@ -1,0 +1,1574 @@
+{
+  "summary": {
+    "model": "heuristik",
+    "tanggal": "2026-09-24T12:25:04.761Z",
+    "total_sample": 30,
+    "lulus": 1,
+    "akurasi_order": 0.03333333333333333,
+    "per_tingkat_kesulitan": {
+      "mudah": {
+        "lulus": 0,
+        "total": 6,
+        "akurasi": 0
+      },
+      "sedang": {
+        "lulus": 1,
+        "total": 11,
+        "akurasi": 0.09090909090909091
+      },
+      "sulit": {
+        "lulus": 0,
+        "total": 13,
+        "akurasi": 0
+      }
+    },
+    "item": {
+      "benar": 21,
+      "expected": 69,
+      "dihasilkan": 24,
+      "recall": 0.30434782608695654,
+      "precision": 0.875
+    },
+    "ambigu": {
+      "expected": 8,
+      "dihasilkan": 20
+    },
+    "catatan_pengiriman_terdeteksi": 5,
+    "error": 0,
+    "latensi_ms": {
+      "rata_rata": 2,
+      "median": 1,
+      "maks": 10
+    },
+    "token": {
+      "input": 0,
+      "output": 0
+    },
+    "estimasi_biaya_usd": null,
+    "biaya_per_pesanan_usd": null
+  },
+  "results": [
+    {
+      "id": 1,
+      "tingkat_kesulitan": "mudah",
+      "pesan": "Selamat pagi Pak, saya mau pesan Semen Tiga Roda 50kg sebanyak 20 sak dan Pasir Cor 2 kubik. Mohon dikirim ke Jl. Melati No. 5, Cibubur. Terima kasih.",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 2,
+        "masalah": [
+          "hilang: SMN-TR-50×20",
+          "hilang: PSR-COR-M3×2",
+          "jumlah item ambigu: diharapkan 0, dapat 2"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Jl. Melati No. 5, Cibubur",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "saya mau pesan Semen Tiga Roda 50kg sebanyak 20 sak",
+            "nama": "saya mau pesan Semen Tiga Roda 50kg sebanyak",
+            "qty": 20,
+            "satuan": "sak"
+          },
+          {
+            "teks_asli": "Pasir Cor 2 kubik. Mohon dikirim ke Jl. Melati No. 5",
+            "nama": "Pasir Cor 2 kubik. Mohon dikirim ke Jl. Melati No.",
+            "qty": 5,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "saya mau pesan Semen Tiga Roda 50kg sebanyak 20 sak",
+          "status": "not_found"
+        },
+        {
+          "ambigu": true,
+          "teks": "Pasir Cor 2 kubik. Mohon dikirim ke Jl. Melati No. 5",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 10,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 2,
+      "tingkat_kesulitan": "mudah",
+      "pesan": "semen gresik 10 sak, bata merah 1000. kirim ke proyek pak budi jl kenanga 12 bekasi",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 2,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: BTA-MRH×1000"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "proyek pak budi, jl. kenanga 12 bekasi",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "semen gresik 10 sak",
+            "nama": "semen gresik",
+            "qty": 10,
+            "satuan": "sak"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "SMN-GR-40",
+          "qty": 10
+        }
+      ],
+      "latency_ms": 9,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 3,
+      "tingkat_kesulitan": "mudah",
+      "pesan": "Pak, triplek 9mm 15 lembar sama kaso 5/7 30 batang ya. Diantar ke rumah Bu Sari, Perum Griya Asri blok C3 no 7 Depok",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 2,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: KYU-KSU-57×30"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "rumah Bu Sari, Perum Griya Asri blok C3 no 7, Depok",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "triplek 9mm 15 lembar",
+            "nama": "triplek 9mm",
+            "qty": 15,
+            "satuan": "lembar"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "TPL-09",
+          "qty": 15
+        }
+      ],
+      "latency_ms": 9,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 4,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Order gan:\n1. besi 10 full 40 btg\n2. besi 8 full 60 btg\n3. bendrat 10 kg\n4. semen TR 50 25 sak\nKirim ke proyek ruko Jl. Raya Bogor km 30, ketemu mandor Joko",
+      "pass": true,
+      "comparison": {
+        "pass": true,
+        "itemsBenar": 4,
+        "itemsExpected": 4,
+        "itemsActual": 4,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": []
+      },
+      "catatan_pengiriman": {
+        "expected": "proyek ruko Jl. Raya Bogor km 30, ketemu mandor Joko",
+        "actual": "proyek ruko Jl. Raya Bogor km 30, ketemu mandor Joko",
+        "terdeteksi": true
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "besi 10 full 40 btg",
+            "nama": "besi 10 full",
+            "qty": 40,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "besi 8 full 60 btg",
+            "nama": "besi 8 full",
+            "qty": 60,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "bendrat 10 kg",
+            "nama": "bendrat",
+            "qty": 10,
+            "satuan": "kg"
+          },
+          {
+            "teks_asli": "semen TR 50 25 sak",
+            "nama": "semen TR 50",
+            "qty": 25,
+            "satuan": "sak"
+          }
+        ],
+        "catatan_pengiriman": "proyek ruko Jl. Raya Bogor km 30, ketemu mandor Joko"
+      },
+      "actual": [
+        {
+          "sku": "BSI-10-SNI",
+          "qty": 40
+        },
+        {
+          "sku": "BSI-08-SNI",
+          "qty": 60
+        },
+        {
+          "sku": "KWT-BDT",
+          "qty": 10
+        },
+        {
+          "sku": "SMN-TR-50",
+          "qty": 25
+        }
+      ],
+      "latency_ms": 10,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 5,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "bos psn smen tigaroda 50 kg 15 sak pasir psang stgh kubik ama bt merah 500 biji kirim ke gg haji naim rt 03 rw 05 cipayung",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 3,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: SMN-TR-50×15",
+          "hilang: PSR-PSG-M3×0.5",
+          "hilang: BTA-MRH×500"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "gg. haji naim rt 03 rw 05, cipayung",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 6,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Mas, aku pesen pacul loro karo ember cor limang iji yo. Dikirim neng omahe Pak Harto, Jl. Mawar 21 Bekasi Timur. Suwun",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: ALT-CGK×2",
+          "hilang: ALT-EMBR×5"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "rumah Pak Harto, Jl. Mawar 21, Bekasi Timur",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 7,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Punten A, bade mesen hebel 10 dua kubik sareng MU 380 opat sak. Kintun ka Jl. Cempaka 8, Cileungsi nya. Hatur nuhun",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: HBL-10-M3×2",
+          "hilang: SMN-MU-40×4",
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Jl. Cempaka 8, Cileungsi",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "bade mesen hebel 10 dua kubik sareng MU 380 opat sak. Kintun ka Jl. Cempaka 8",
+            "nama": "bade mesen hebel 10 dua kubik sareng MU 380 opat sak. Kintun ka Jl. Cempaka",
+            "qty": 8,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "bade mesen hebel 10 dua kubik sareng MU 380 opat sak. Kintun ka Jl. Cempaka 8",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 3,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 8,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Bang, gua mau ambil paku 7 cm 5 kilo, paku 5 cm 3 kilo, ama paku beton 2 dus. Kagak usah dikirim, ntar gua ambil sendiri sore",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 3,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: PKU-7CM×5",
+          "hilang: PKU-BTN×2",
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "diambil sendiri sore hari (tidak dikirim)",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "gua mau ambil paku 7 cm 5 kilo",
+            "nama": "gua mau ambil paku 7 cm",
+            "qty": 5,
+            "satuan": "kg"
+          },
+          {
+            "teks_asli": "paku 5 cm 3 kilo",
+            "nama": "paku 5 cm",
+            "qty": 3,
+            "satuan": "kg"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "gua mau ambil paku 7 cm 5 kilo",
+          "status": "not_found"
+        },
+        {
+          "sku": "PKU-5CM",
+          "qty": 3
+        }
+      ],
+      "latency_ms": 4,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 9,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "Pak tolong siapkan semen dynamix dua puluh lima sak, besi dua belas full delapan belas batang, sama batu split tiga kubik. Kirim besok pagi ke proyek gudang Pak Hendra, Jl. Industri 3 Cikarang",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 3,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: SMN-DX-40×25",
+          "hilang: BSI-12-SNI×18",
+          "hilang: BTU-SPL-M3×3"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "besok pagi, proyek gudang Pak Hendra, Jl. Industri 3 Cikarang",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 10,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "hebel 3 kubik sama semen instan 6 sak ya kirim ke jl anggrek 4",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 1,
+        "itemsActual": 0,
+        "ambiguExpected": 1,
+        "ambiguActual": 2,
+        "masalah": [
+          "hilang: SMN-MU-40×6",
+          "jumlah item ambigu: diharapkan 1, dapat 2"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "jl. anggrek 4",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "hebel 3 kubik",
+            "nama": "hebel",
+            "qty": 3,
+            "satuan": "m3"
+          },
+          {
+            "teks_asli": "semen instan 6 sak ya kirim ke jl anggrek 4",
+            "nama": "semen instan 6 sak ya kirim ke jl anggrek",
+            "qty": 4,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "hebel 3 kubik",
+          "status": "ambiguous"
+        },
+        {
+          "ambigu": true,
+          "teks": "semen instan 6 sak ya kirim ke jl anggrek 4",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 11,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "Pak ada closet duduk toto ga? kalo ada 1 unit. Sama pralon 4 dim 6 batang dan keni 3 dim 10 biji",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 2,
+        "itemsExpected": 2,
+        "itemsActual": 2,
+        "ambiguExpected": 1,
+        "ambiguActual": 0,
+        "masalah": [
+          "jumlah item ambigu: diharapkan 1, dapat 0"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": null,
+        "actual": null,
+        "terdeteksi": true
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "pralon 4 dim 6 batang",
+            "nama": "pralon 4 dim",
+            "qty": 6,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "keni 3 dim 10 biji",
+            "nama": "keni 3 dim",
+            "qty": 10,
+            "satuan": "biji"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "PPA-RCK-4",
+          "qty": 6
+        },
+        {
+          "sku": "FTG-ELB-3",
+          "qty": 10
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 12,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "[08.12] pak pesan semen tiga roda 20 sak sama pasir cor 1 rit\n[08.15] kirim ke proyek pak budi jl melati 5\n[08.40] eh yang semen tadi jadi 30 aja pak",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 2,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 2,
+        "masalah": [
+          "hilang: SMN-TR-50×30",
+          "jumlah item ambigu: diharapkan 0, dapat 2"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "kirim ke proyek pak budi, jl. melati 5",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "[08.12] pak pesan semen tiga roda 20 sak",
+            "nama": "[08.12] pak pesan semen tiga roda",
+            "qty": 20,
+            "satuan": "sak"
+          },
+          {
+            "teks_asli": "pasir cor 1 rit",
+            "nama": "pasir cor",
+            "qty": 1,
+            "satuan": "rit"
+          },
+          {
+            "teks_asli": "[08.15] kirim ke proyek pak budi jl melati 5",
+            "nama": "[08.15] kirim ke proyek pak budi jl melati",
+            "qty": 5,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "[08.12] pak pesan semen tiga roda 20 sak",
+          "status": "not_found"
+        },
+        {
+          "sku": "PSR-COR-RIT",
+          "qty": 1
+        },
+        {
+          "ambigu": true,
+          "teks": "[08.15] kirim ke proyek pak budi jl melati 5",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 2,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 13,
+      "tingkat_kesulitan": "mudah",
+      "pesan": "Cat avitex 5kg 4 galon, cat no drop 2 kaleng. Kirim ke Toko Maju Jaya Jl. Pemuda 88 Rawamangun",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 2,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: CAT-NDP-4×2"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Toko Maju Jaya, Jl. Pemuda 88, Rawamangun",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "Cat avitex 5kg 4 galon",
+            "nama": "Cat avitex 5kg",
+            "qty": 4,
+            "satuan": "galon"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "CAT-AVT-5",
+          "qty": 4
+        }
+      ],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 14,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Siang pak. Mau tanya stok granit 60x60 indogres. Kalo ada saya ambil 12 dus. Nat nya sekalian 10 bungkus. Dianter ke Cluster Bougenville no 15 BSD ya pak.",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: GRN-IDG-60×12",
+          "hilang: NAT-AM×10"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Cluster Bougenville no 15, BSD",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 15,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "rangka atap: c75 45 batang, reng 0.45 60 batang, skrup roofing 2 dus, spandek 0,3 total 80 meter. kirim ke jl. dahlia 3 tangerang selatan",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 2,
+        "itemsExpected": 4,
+        "itemsActual": 3,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: BJR-C75×45",
+          "qty BJR-SPD-030: diharapkan 80, dapat 0",
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "jl. dahlia 3, tangerang selatan",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "rangka atap: c75 45 batang",
+            "nama": "rangka atap: c75",
+            "qty": 45,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "reng 0.45 60 batang",
+            "nama": "reng 0.45",
+            "qty": 60,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "skrup roofing 2 dus",
+            "nama": "skrup roofing",
+            "qty": 2,
+            "satuan": "dus"
+          },
+          {
+            "teks_asli": "spandek 0",
+            "nama": "spandek",
+            "qty": 0,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "rangka atap: c75 45 batang",
+          "status": "ambiguous"
+        },
+        {
+          "sku": "BJR-RNG-45",
+          "qty": 60
+        },
+        {
+          "sku": "SKR-BJR",
+          "qty": 2
+        },
+        {
+          "sku": "BJR-SPD-030",
+          "qty": 0
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 16,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "besi 10 50 batang sama besi 6 banci 100 batang kirim sore ini ke proyek cilandak",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 1,
+        "itemsActual": 0,
+        "ambiguExpected": 1,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: BSI-06-BCI×100"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "sore ini, proyek cilandak",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "besi 10 50 batang",
+            "nama": "besi 10",
+            "qty": 50,
+            "satuan": "batang"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "besi 10 50 batang",
+          "status": "ambiguous"
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 17,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "Mas, semen tiga roda patang puluh kilo sepuluh sak, bata ringan pitu setengah telung kubik, kirim ning Jl. Kalimalang 9",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: SMN-TR-40×10",
+          "hilang: HBL-075-M3×3",
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Jl. Kalimalang 9",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "kirim ning Jl. Kalimalang 9",
+            "nama": "kirim ning Jl. Kalimalang",
+            "qty": 9,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "kirim ning Jl. Kalimalang 9",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 18,
+      "tingkat_kesulitan": "mudah",
+      "pesan": "Pipa rucika 3/4 20 batang, 1/2 20 batang, sok drat dalam 1/2 30 pcs",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 2,
+        "itemsExpected": 3,
+        "itemsActual": 2,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: PPA-RCK-05×20",
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": null,
+        "actual": null,
+        "terdeteksi": true
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "Pipa rucika 3/4 20 batang",
+            "nama": "Pipa rucika 3/4",
+            "qty": 20,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "1/2 20 batang",
+            "nama": "1/2",
+            "qty": 20,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "sok drat dalam 1/2 30 pcs",
+            "nama": "sok drat dalam 1/2",
+            "qty": 30,
+            "satuan": "biji"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "PPA-RCK-075",
+          "qty": 20
+        },
+        {
+          "ambigu": true,
+          "teks": "1/2 20 batang",
+          "status": "not_found"
+        },
+        {
+          "sku": "FTG-SDD-05",
+          "qty": 30
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 19,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "gan ordr trplek 12 mili 10 lmbr, triplek 3 mili 20lmbr, reng kayu 50 btg, paku 5cm 2kg. antar ke rmh jl.nangka no2 depok",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 4,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: TPL-12×10",
+          "hilang: TPL-03×20",
+          "hilang: PKU-5CM×2"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "rumah jl. nangka no 2, depok",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "reng kayu 50 btg",
+            "nama": "reng kayu",
+            "qty": 50,
+            "satuan": "batang"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "KYU-RNG-23",
+          "qty": 50
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 20,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "pasir 1 rit sama batu kali 5 kubik kirim ke kavling pak rahmat, sawangan",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 1,
+        "itemsActual": 0,
+        "ambiguExpected": 1,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: BTU-KAL-M3×5"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "kavling pak rahmat, sawangan",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "pasir 1 rit",
+            "nama": "pasir",
+            "qty": 1,
+            "satuan": "rit"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "pasir 1 rit",
+          "status": "ambiguous"
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 21,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "Tolong kirim seratus lima puluh batako press, dua sak semen gresik, dan satu gerobak sorong ke Jl. Flamboyan 17 Bogor",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 3,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: BKO-PRS×150",
+          "hilang: SMN-GR-40×2",
+          "hilang: ALT-GRB×1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Jl. Flamboyan 17, Bogor",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 22,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "pak order ya: keramik platinum 40x40 20 dus, nat 5 bungkus, semen tiga roda 10 sak\n\nkirim ke perum taman sari blok F no 2 bekasi\n\nmaaf pak nat nya ga jadi, semen jadi 12 sak ya",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 2,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "hilang: KRM-PLT-40×20",
+          "qty SMN-TR-50: diharapkan 12, dapat 10",
+          "tidak diharapkan: NAT-AM×5",
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "perum taman sari blok F no 2, bekasi",
+        "actual": "perum taman sari blok F no 2 bekasi\n\nmaaf pak nat nya ga jadi, semen jadi 12 sak ya",
+        "terdeteksi": true
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "pak order ya: keramik platinum 40x40 20 dus",
+            "nama": "pak order ya: keramik platinum 40x40",
+            "qty": 20,
+            "satuan": "dus"
+          },
+          {
+            "teks_asli": "nat 5 bungkus",
+            "nama": "nat",
+            "qty": 5,
+            "satuan": "bungkus"
+          },
+          {
+            "teks_asli": "semen tiga roda 10 sak",
+            "nama": "semen tiga roda",
+            "qty": 10,
+            "satuan": "sak"
+          }
+        ],
+        "catatan_pengiriman": "perum taman sari blok F no 2 bekasi\n\nmaaf pak nat nya ga jadi, semen jadi 12 sak ya"
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "pak order ya: keramik platinum 40x40 20 dus",
+          "status": "ambiguous"
+        },
+        {
+          "sku": "NAT-AM",
+          "qty": 5
+        },
+        {
+          "sku": "SMN-TR-50",
+          "qty": 10
+        }
+      ],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 23,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Bang, cat catylac 25 kilo 2 pail ye, ama cat avian kayu besi 1 kilo 3 kaleng. Anterin ke rumah engkong di Jl. Kemuning 12 Condet",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: CAT-CTL-25×2",
+          "hilang: CAT-AVN-1×3"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "rumah engkong, Jl. Kemuning 12, Condet",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 24,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "semen 20 sak, genteng keramik kanmuri 500 biji, keramik mulia 30x30 kasar 8 dus. kirim ke jl. merpati 9",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 1,
+        "itemsActual": 0,
+        "ambiguExpected": 2,
+        "ambiguActual": 3,
+        "masalah": [
+          "hilang: KRM-MLA-30×8",
+          "jumlah item ambigu: diharapkan 2, dapat 3"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "jl. merpati 9",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "semen 20 sak",
+            "nama": "semen",
+            "qty": 20,
+            "satuan": "sak"
+          },
+          {
+            "teks_asli": "genteng keramik kanmuri 500 biji",
+            "nama": "genteng keramik kanmuri",
+            "qty": 500,
+            "satuan": "biji"
+          },
+          {
+            "teks_asli": "keramik mulia 30x30 kasar 8 dus. kirim ke jl. merpati 9",
+            "nama": "keramik mulia 30x30 kasar 8 dus. kirim ke jl. merpati",
+            "qty": 9,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "semen 20 sak",
+          "status": "ambiguous"
+        },
+        {
+          "ambigu": true,
+          "teks": "genteng keramik kanmuri 500 biji",
+          "status": "not_found"
+        },
+        {
+          "ambigu": true,
+          "teks": "keramik mulia 30x30 kasar 8 dus. kirim ke jl. merpati 9",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 4,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 25,
+      "tingkat_kesulitan": "mudah",
+      "pesan": "Pesan pasir urug 2 rit untuk urugan halaman, kirim ke Jl. Sukun 4 Cimanggis",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 1,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: PSR-URG-RIT×2"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Jl. Sukun 4, Cimanggis",
+        "actual": "Jl. Sukun 4 Cimanggis",
+        "terdeteksi": true
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": "Jl. Sukun 4 Cimanggis"
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 26,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "kang, abdi peryogi keni 3 dim 6 siki, pralon 3 dim 8 btg, pralon 4 dim 4 btg. kirim ka Jl Pajajaran 20 Bogor",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 1,
+        "itemsExpected": 3,
+        "itemsActual": 1,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: FTG-ELB-3×6",
+          "hilang: PPA-RCK-4×4"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "Jl. Pajajaran 20, Bogor",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "pralon 3 dim 8 btg",
+            "nama": "pralon 3 dim",
+            "qty": 8,
+            "satuan": "batang"
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "PPA-RCK-3",
+          "qty": 8
+        }
+      ],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 27,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "Pak, ember cor selusin, cangkul setengah lusin, bendrat 5 kilo. Anter ke gudang proyek Jl. Siliwangi 7 Pamulang",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 3,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: ALT-EMBR×12",
+          "hilang: ALT-CGK×6",
+          "hilang: KWT-BDT×5"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "gudang proyek Jl. Siliwangi 7, Pamulang",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 0,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 28,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "paku 3 kg sama cat tembok putih 2 galon trus kaso 20 batang kirim ke jl melon 3",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 1,
+        "itemsActual": 0,
+        "ambiguExpected": 2,
+        "ambiguActual": 2,
+        "masalah": [
+          "hilang: KYU-KSU-57×20"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "jl. melon 3",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "paku 3 kg",
+            "nama": "paku",
+            "qty": 3,
+            "satuan": "kg"
+          },
+          {
+            "teks_asli": "cat tembok putih 2 galon trus kaso 20 batang kirim ke jl melon 3",
+            "nama": "cat tembok putih 2 galon trus kaso 20 batang kirim ke jl melon",
+            "qty": 3,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "ambigu": true,
+          "teks": "paku 3 kg",
+          "status": "ambiguous"
+        },
+        {
+          "ambigu": true,
+          "teks": "cat tembok putih 2 galon trus kaso 20 batang kirim ke jl melon 3",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 1,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 29,
+      "tingkat_kesulitan": "sedang",
+      "pesan": "Selamat siang, berikut PO dari CV Karya Bangun:\n1) Besi beton 12 mm full SNI – 30 batang\n2) Besi beton 10 mm banci – 50 batang\n3) Kawat bendrat – 15 kg\n4) Semen Dynamix 40 kg – 40 sak\nPengiriman ke proyek Perumahan Citra Asri, Jl. Raya Narogong Km 12, PIC: Pak Andi.",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 4,
+        "itemsExpected": 4,
+        "itemsActual": 4,
+        "ambiguExpected": 0,
+        "ambiguActual": 1,
+        "masalah": [
+          "jumlah item ambigu: diharapkan 0, dapat 1"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "proyek Perumahan Citra Asri, Jl. Raya Narogong Km 12, PIC Pak Andi",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [
+          {
+            "teks_asli": "Besi beton 12 mm full SNI – 30 batang",
+            "nama": "Besi beton 12 mm full SNI –",
+            "qty": 30,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "Besi beton 10 mm banci – 50 batang",
+            "nama": "Besi beton 10 mm banci –",
+            "qty": 50,
+            "satuan": "batang"
+          },
+          {
+            "teks_asli": "Kawat bendrat – 15 kg",
+            "nama": "Kawat bendrat –",
+            "qty": 15,
+            "satuan": "kg"
+          },
+          {
+            "teks_asli": "Semen Dynamix 40 kg – 40 sak",
+            "nama": "Semen Dynamix 40 kg –",
+            "qty": 40,
+            "satuan": "sak"
+          },
+          {
+            "teks_asli": "Jl. Raya Narogong Km 12",
+            "nama": "Jl. Raya Narogong Km",
+            "qty": 12,
+            "satuan": null
+          }
+        ],
+        "catatan_pengiriman": null
+      },
+      "actual": [
+        {
+          "sku": "BSI-12-SNI",
+          "qty": 30
+        },
+        {
+          "sku": "BSI-10-BCI",
+          "qty": 50
+        },
+        {
+          "sku": "KWT-BDT",
+          "qty": 15
+        },
+        {
+          "sku": "SMN-DX-40",
+          "qty": 40
+        },
+        {
+          "ambigu": true,
+          "teks": "Jl. Raya Narogong Km 12",
+          "status": "not_found"
+        }
+      ],
+      "latency_ms": 4,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    },
+    {
+      "id": 30,
+      "tingkat_kesulitan": "sulit",
+      "pesan": "[10.02] mas pesan hebel 10 empat kubik\n[10.03] mu 380 delapan sak\n[10.20] hebelnya kurangi satu kubik aja mas, mu nya tambah dua\n[10.21] kirim ke jl. teratai 11 cibinong",
+      "pass": false,
+      "comparison": {
+        "pass": false,
+        "itemsBenar": 0,
+        "itemsExpected": 2,
+        "itemsActual": 0,
+        "ambiguExpected": 0,
+        "ambiguActual": 0,
+        "masalah": [
+          "hilang: HBL-10-M3×3",
+          "hilang: SMN-MU-40×10"
+        ]
+      },
+      "catatan_pengiriman": {
+        "expected": "jl. teratai 11, cibinong",
+        "actual": null,
+        "terdeteksi": false
+      },
+      "extraction": {
+        "items": [],
+        "catatan_pengiriman": null
+      },
+      "actual": [],
+      "latency_ms": 4,
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "model": "heuristik"
+    }
+  ]
+}
