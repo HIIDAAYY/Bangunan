@@ -50,3 +50,5 @@ next-env.d.ts
 /playwright-report/
 /playwright/.cache/
 /eval-report.ideal.json
+
+.vercel
