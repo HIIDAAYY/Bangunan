@@ -1,6 +1,6 @@
 # Asisten Pesanan WhatsApp untuk Toko Bangunan
 
-Pelanggan toko bangunan biasanya memesan lewat WhatsApp dengan tulisan seadanya, misalnya _"smen tigaroda 15 sak, besi 10 50 btg, kirim ke proyek pak budi"_. Admin lalu mengetik ulang pesanan itu satu per satu, dan salah barang, jumlah, atau harga masih sering terjadi.
+> **Ringkasan:** Asisten pesanan WhatsApp untuk toko bahan bangunan. Pelanggan mengetik (atau memfoto) daftar belanja seperti biasa, misalnya _"smen tigaroda 15 sak, besi 10 50 btg, kirim ke proyek pak budi"_. Sistem mencocokkan barang ke katalog, menanyakan item yang ambigu, menghitung total, meminta konfirmasi "YA", lalu mengirim nota PDF. Pemilik toko memproses pesanan dari dashboard. Dibangun dengan Next.js, Postgres, dan LLM (Claude atau model OpenRouter), dengan 168 unit test, 4 test E2E, dan eval 30 chat berlabel.
 
 Aplikasi ini mengubah chat seperti itu menjadi pesanan yang sudah dihitung harganya:
 
@@ -9,7 +9,7 @@ Aplikasi ini mengubah chat seperti itu menjadi pesanan yang sudah dihitung harga
 3. Bot mengirim ringkasan dan total, lalu meminta konfirmasi "YA".
 4. Setelah dikonfirmasi, pesanan masuk ke dashboard pemilik toko dan nota PDF dikirim ke pelanggan.
 
-**Demo:** https://bangunan-mu.vercel.app/simulator (tanpa login)
+**Live demo:** [https://bangunan-mu.vercel.app/simulator](https://bangunan-mu.vercel.app/simulator) dan dashboard di [https://bangunan-mu.vercel.app/dashboard](https://bangunan-mu.vercel.app/dashboard) — tanpa login, tanpa biaya API (lihat [Public demo mode](#public-demo-mode)).
 
 ![Demo: chat, klarifikasi, konfirmasi, dashboard](docs/demo.gif)
 
@@ -28,7 +28,7 @@ flowchart LR
     X -->|"claude / openrouter / heuristik"| M["catalog-matcher<br/>pemilihan SKU deterministik"]
     M --> F["state percakapan<br/>klarifikasi, UBAH, YA"]
     F -->|YA| DB[(Postgres / Supabase)]
-    DB --> D["/dashboard<br/>dengan password"]
+    DB --> D["/dashboard<br/>terbuka di demo, password di mode AI"]
     DB --> N["/api/nota/:id<br/>link PDF bertoken HMAC"]
     N -->|lampiran PDF| T
 ```
@@ -58,8 +58,8 @@ Dari tabel ini:
 
 | Pemeriksaan | Hasil |
 |---|---|
-| Unit test (Vitest) | **166 lulus**: matcher (alias, typo, ukuran, satuan, barang ambigu), parser dengan mock, state percakapan, signature Twilio, hak akses, format nota dan Rupiah |
-| E2E (Playwright) | **4 lulus**: daftar dan detail pesanan, perubahan status baru → diproses → dikirim → selesai, simulator bisa dibuka tanpa login tapi dashboard tidak, pesanan dari simulator muncul di dashboard |
+| Unit test (Vitest) | **168 lulus**: matcher (alias, typo, ukuran, satuan, barang ambigu, 30 sampel), parser dengan client mock, state percakapan, signature Twilio, hak akses, format nota/Rupiah, contoh demo publik |
+| E2E (Playwright) | **4 lulus**: daftar dan detail pesanan, perubahan status baru → diproses → dikirim → selesai, simulator & dashboard bisa dibuka di mode demo, pesanan dari simulator muncul di dashboard |
 | Lint, typecheck, build | Lulus |
 | CI | [GitHub Actions](.github/workflows/ci.yml): validasi data, lint, typecheck, unit test, lalu E2E dengan Postgres |
 
@@ -71,7 +71,7 @@ Dari tabel ini:
 4. **Link nota bertoken.** Twilio perlu mengunduh PDF tanpa login, sementara nomor pesanan berurutan dan mudah ditebak. Karena itu URL nota memakai token HMAC yang dicek dengan perbandingan timing-safe.
 5. **Data uji dibuat sebelum mengatur prompt.** 30 chat berlabel, satu script untuk semua provider, pembanding tanpa AI, dan batas atas dengan input ideal. Dengan ini perubahan prompt, model, atau katalog bisa langsung diukur.
 
-Simulator publik hanya terbuka kalau `EXTRACTOR=heuristik`. Kalau diganti ke model berbayar, simulator otomatis terkunci supaya pengunjung tidak memakai kredit API.
+Halaman simulator & dashboard publik hanya terbuka jika `EXTRACTOR=heuristik`. Jika diubah ke model berbayar (`claude` / `openrouter`), otomatis terkunci password agar tidak memakan kredit API.
 
 ## Bug yang ditemukan saat pengujian
 
@@ -81,10 +81,6 @@ Setiap perbaikan disertai test regresi:
 - Key React ganda membuat bubble chat tampil dobel.
 - Dropdown status di dashboard tidak ikut berubah setelah tombol "Proses pesanan" diklik.
 - Revisi "UBAH semen jadi 30" menghapus alamat kirim yang sudah ada.
-
-## Pengembangan
-
-Proyek ini saya kerjakan bersama Claude Code. Saya menyusun spesifikasi, data uji, dan syarat pengujian, lalu meminta laporan test di setiap tahap. Keputusan seperti memakai model gratis selama belum ada klien dan demo publik tanpa AI saya ambil sendiri.
 
 ## Batasan
 
@@ -138,3 +134,4 @@ Panduan deploy ke Vercel dan Supabase: [DEPLOY.md](DEPLOY.md).
 | [app/dashboard/](app/dashboard/), [app/simulator/](app/simulator/) | Dashboard pemilik toko, simulator chat |
 | [scripts/eval.ts](scripts/eval.ts), [eval/](eval/) | Script uji akurasi dan laporannya |
 | [data/](data/) | Katalog 50 produk dan 30 chat berlabel |
+

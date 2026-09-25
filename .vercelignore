@@ -1,0 +1,10 @@
+# Jangan upload rahasia & data lokal saat deploy lewat Vercel CLI.
+.env*
+!.env.example
+.pgdata
+.pgbin
+.next
+node_modules
+test-results
+playwright-report
+eval-report*.json

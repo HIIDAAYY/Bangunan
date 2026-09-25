@@ -1,24 +1,27 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * HTTP Basic Auth (username: admin, password: DASHBOARD_PASSWORD).
- * - Dashboard selalu dilindungi.
- * - Simulator terbuka untuk publik HANYA bila EXTRACTOR=heuristik (tanpa biaya API). Dengan provider AI,
- *   simulator ikut dikunci agar pengunjung tidak bisa menghabiskan kredit API.
+ * Akses halaman:
+ * - Mode demo (EXTRACTOR=heuristik): simulator DAN dashboard terbuka untuk siapa saja yang punya link.
+ *   Aman karena tidak ada biaya API dan datanya hanya pesanan simulasi.
+ * - Mode AI (claude/openrouter): simulator & dashboard dilindungi HTTP Basic Auth
+ *   (username: admin, password: DASHBOARD_PASSWORD) agar kredit API dan data pelanggan asli tidak terbuka.
  * Webhook Twilio dan link nota punya verifikasi sendiri (signature / token), jadi tidak ikut di sini.
  */
-export function isPublicPath(pathname: string, extractor = process.env.EXTRACTOR): boolean {
-  const isSimulator = pathname === "/simulator" || pathname.startsWith("/simulator/") || pathname.startsWith("/api/simulator");
-  return isSimulator && extractor === "heuristik";
+export function isPublicDemo(extractor = process.env.EXTRACTOR): boolean {
+  return extractor === "heuristik";
 }
 
 export function middleware(req: NextRequest) {
-  if (isPublicPath(req.nextUrl.pathname)) return NextResponse.next();
+  if (isPublicDemo()) return NextResponse.next();
 
   const password = process.env.DASHBOARD_PASSWORD;
   if (!password) {
     if (process.env.NODE_ENV === "production") {
-      return new NextResponse("DASHBOARD_PASSWORD belum diset", { status: 503 });
+      return new NextResponse(
+        "Halaman ini dikunci: DASHBOARD_PASSWORD belum diset di server. Untuk demo publik tanpa login, set EXTRACTOR=heuristik.",
+        { status: 503 },
+      );
     }
     return NextResponse.next(); // dev lokal tanpa password
   }

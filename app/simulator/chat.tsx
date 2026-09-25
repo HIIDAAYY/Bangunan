@@ -57,6 +57,7 @@ export function Chat({ examples, followUps, demoMode }: { examples: Example[]; f
   const [busy, setBusy] = useState(false);
   const nextId = useRef(1);
   const scroller = useRef<HTMLDivElement>(null);
+  const chatPanel = useRef<HTMLElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => setPhone(sessionPhone()), []);
@@ -102,10 +103,32 @@ export function Chat({ examples, followUps, demoMode }: { examples: Example[]; f
     setBubbles([]);
   }
 
+  /** Di HP, contoh & balasan cepat ada di bawah chat: gulir ke chat agar balasan bot terlihat. */
+  function showChat() {
+    const rect = chatPanel.current?.getBoundingClientRect();
+    if (rect && (rect.top < 0 || rect.bottom > window.innerHeight)) {
+      chatPanel.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  // Tiap contoh mewakili pelanggan lain: mulai percakapan baru agar tidak tergabung dengan draf sebelumnya.
+  async function startExample(text: string) {
+    if (busy) return;
+    showChat();
+    setBusy(true); // kunci input selama reset agar pesan yang diketik tidak hilang ikut terhapus
+    try {
+      await reset();
+    } finally {
+      setBusy(false);
+    }
+    await send(text);
+  }
+
   return (
     <main className="mx-auto grid max-w-6xl gap-6 px-4 py-6 lg:grid-cols-[minmax(0,26rem)_1fr] lg:py-10">
       {/* Ponsel */}
       <section
+        ref={chatPanel}
         aria-label="Chat WhatsApp toko"
         className="flex h-[min(46rem,calc(100vh-3rem))] flex-col overflow-hidden rounded-[1.75rem] border-8 border-tinta bg-[#efe7dd] shadow-xl"
       >
@@ -122,7 +145,9 @@ export function Chat({ examples, followUps, demoMode }: { examples: Example[]; f
         <div ref={scroller} className="flex-1 space-y-2 overflow-y-auto px-3 py-4" data-testid="chat-log" aria-live="polite">
           {bubbles.length === 0 && (
             <p className="mx-auto mt-6 max-w-[16rem] rounded-md bg-[#fff6c8] px-3 py-2 text-center text-xs text-tinta">
-              Ketik pesanan seperti pelanggan, atau pilih salah satu contoh chat di samping.
+              Ketik pesanan seperti pelanggan, atau pilih salah satu contoh chat{" "}
+              <span className="lg:hidden">di bawah</span>
+              <span className="hidden lg:inline">di samping</span>.
             </p>
           )}
           {bubbles.map((b) =>
@@ -226,7 +251,7 @@ export function Chat({ examples, followUps, demoMode }: { examples: Example[]; f
               Mulai percakapan baru
             </button>
             <Link href="/dashboard" className="underline underline-offset-4 hover:no-underline">
-              {demoMode ? "Dashboard pemilik (perlu login)" : "Lihat dashboard"}
+              Lihat dashboard
             </Link>
           </div>
         </div>
@@ -253,7 +278,7 @@ export function Chat({ examples, followUps, demoMode }: { examples: Example[]; f
               <button
                 type="button"
                 disabled={busy}
-                onClick={() => send(ex.text)}
+                onClick={() => startExample(ex.text)}
                 className="w-full rounded-md border border-garis bg-panel px-3 py-2 text-left text-sm hover:border-tinta disabled:opacity-50"
               >
                 <span className="mb-1 block text-xs text-redup">{ex.label}</span>
@@ -272,7 +297,10 @@ export function Chat({ examples, followUps, demoMode }: { examples: Example[]; f
                   key={f}
                   type="button"
                   disabled={busy}
-                  onClick={() => send(f)}
+                  onClick={() => {
+                    showChat();
+                    send(f);
+                  }}
                   className="rounded-full border border-tinta px-3 py-1.5 text-sm font-semibold hover:bg-panel disabled:opacity-50"
                 >
                   {f}

@@ -5,9 +5,9 @@ test.afterAll(async () => {
   await prisma.$disconnect();
 });
 
-// Mode demo publik (EXTRACTOR=heuristik di playwright.config): pengunjung tanpa login bisa mencoba simulator,
-// tapi dashboard tetap terkunci.
-test("pengunjung tanpa login: simulator terbuka, dashboard terkunci", async ({ browser, baseURL }) => {
+// Mode demo publik (EXTRACTOR=heuristik di playwright.config): siapa pun yang punya link bisa membuka
+// simulator dan dashboard tanpa login.
+test("pengunjung tanpa login bisa memakai simulator dan melihat dashboard", async ({ browser, baseURL }) => {
   const visitor = await browser.newContext({ httpCredentials: undefined });
   const page = await visitor.newPage();
 
@@ -16,8 +16,18 @@ test("pengunjung tanpa login: simulator terbuka, dashboard terkunci", async ({ b
   await page.getByRole("button", { name: /Pesanan dengan item ambigu/ }).click();
   await expect(page.getByTestId("balasan-toko").last()).toContainText("maksudnya yang mana?");
 
-  const dashboard = await page.request.get(`${baseURL}/dashboard`);
-  expect(dashboard.status()).toBe(401);
+  // Contoh lain = pelanggan lain: percakapan baru, tidak tergabung dengan draf contoh pertama.
+  await page.getByRole("button", { name: /Besi full atau banci/ }).click();
+  await expect(page.getByTestId("balasan-toko").last()).toContainText("Untuk besi 10 50 batang");
+  await expect(page.getByTestId("pesan-pelanggan")).toHaveCount(1);
+  await expect(page.getByTestId("balasan-toko")).toHaveCount(1);
+  await page.getByLabel("Pesan").fill("banci");
+  await page.getByLabel("Pesan").press("Enter");
+  await expect(page.getByTestId("balasan-toko").last()).toContainText("Total: Rp4.250.000");
+  await expect(page.getByTestId("balasan-toko").last()).not.toContainText("Semen Tiga Roda");
+
+  await page.goto(`${baseURL}/dashboard`);
+  await expect(page.getByRole("heading", { name: /pesanan hari ini/ })).toBeVisible();
   await visitor.close();
 });
 

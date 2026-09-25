@@ -241,6 +241,14 @@ describe("lain-lain", () => {
     expect(r.replies).toEqual([msg.HELP]);
   });
 
+  it("UBAH tanpa pesanan yang sedang dikonfirmasi → penjelasan, bukan 'tidak tersedia'", async () => {
+    const deps = fakeDeps({});
+    const r = await handleMessage(INITIAL_STATE, { text: "UBAH semen jadi 30" }, deps);
+    expect(r.state).toEqual(INITIAL_STATE);
+    expect(r.replies).toEqual([msg.NOTHING_TO_REVISE]);
+    expect(deps.extract).not.toHaveBeenCalled();
+  });
+
   it("BATAL mengosongkan draf", async () => {
     const deps = fakeDeps({ "semen tiga roda 20 sak": { items: [["semen tiga roda", 20, "sak"]] } });
     const r = await run(deps, "semen tiga roda 20 sak", "batal");

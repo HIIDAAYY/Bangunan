@@ -1,7 +1,7 @@
 # Checklist deploy demo publik (Vercel + Supabase)
 
-Target: `/simulator` bisa dicoba siapa saja **tanpa login dan tanpa biaya API** (`EXTRACTOR=heuristik`),
-sementara `/dashboard` tetap dilindungi password. Semua langkah di bawah dikerjakan dari akunmu sendiri.
+Target: `/simulator` dan `/dashboard` bisa dibuka siapa saja yang punya link, **tanpa login dan tanpa biaya API**
+(`EXTRACTOR=heuristik`). Semua langkah di bawah dikerjakan dari akunmu sendiri.
 
 Perkiraan waktu: 30–45 menit.
 
@@ -43,7 +43,7 @@ Perkiraan waktu: 30–45 menit.
   | `EXTRACTOR` | `heuristik` (wajib; inilah yang membuat simulator publik dan gratis) |
   | `DATABASE_URL` | transaction pooler URL + `?pgbouncer=true&connection_limit=1` |
   | `DIRECT_URL` | session pooler URL |
-  | `DASHBOARD_PASSWORD` | password kuat baru. **Jangan pakai `demo123`** |
+  | `DASHBOARD_PASSWORD` | password kuat baru, **jangan pakai `demo123`**. Tidak dipakai di mode demo, tapi langsung berlaku kalau `EXTRACTOR` nanti diganti ke AI |
   | `APP_SECRET` | string acak panjang, mis. hasil `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
   | `PUBLIC_BASE_URL` | isi sementara `https://example.com`, diganti di langkah berikutnya |
 
@@ -60,9 +60,9 @@ Buka di jendela incognito:
 - [ ] `/simulator` terbuka **tanpa** diminta login, dengan kotak kuning "Ini demo publik tanpa AI".
 - [ ] Klik contoh "Pesanan dengan item ambigu" → jawab `2` → klik `UBAH semen jadi 30` → klik `YA`.
       Balasan terakhir memuat "Nota pesanan", dan link PDF-nya bisa dibuka.
-- [ ] `/dashboard` **meminta login**. Login dengan `admin` / `DASHBOARD_PASSWORD`, lalu pastikan pesanan tadi muncul
+- [ ] `/dashboard` terbuka **tanpa login**. Pastikan pesanan tadi muncul
       dan tombol **Proses pesanan** berfungsi.
-- [ ] Ganti link demo di `README.md` (cari `YOUR-DEMO-URL`) dengan domain Vercel-mu, commit, lalu push.
+- [ ] Link demo di `README.md` sudah mengarah ke `https://bangunan-mu.vercel.app`. Kalau domainnya berubah, perbarui juga di sana.
 
 ## 5. Perawatan
 
@@ -76,8 +76,8 @@ Buka di jendela incognito:
   link ke perekrut/klien, buka dashboard Supabase dan klik **Restore** kalau project sedang dipause.
 - **Vercel Hobby** ditujukan untuk pemakaian pribadi/non-komersial. Kalau demo ini dipakai untuk klien berbayar,
   pertimbangkan paket Pro.
-- **Mengaktifkan AI di deployment** (nanti): set `EXTRACTOR=claude` + `ANTHROPIC_API_KEY`. Simulator **otomatis ikut
-  terkunci password** karena middleware hanya membukanya untuk `heuristik`, jadi kredit API tidak bisa dihabiskan
-  pengunjung.
+- **Mengaktifkan AI di deployment** (nanti): set `EXTRACTOR=claude` + `ANTHROPIC_API_KEY`. Simulator dan dashboard
+  **otomatis terkunci password** (`DASHBOARD_PASSWORD`) karena middleware hanya membukanya untuk `heuristik`, jadi
+  kredit API dan nomor HP pelanggan asli tidak bisa diakses pengunjung.
 - **WhatsApp sungguhan**: isi `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_WHATSAPP_NUMBER`, lalu atur webhook
   sandbox ke `https://<domain>/api/whatsapp/webhook` (lihat README → Run locally).

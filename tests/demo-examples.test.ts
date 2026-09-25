@@ -39,6 +39,19 @@ describe("contoh demo publik (extractor heuristik)", () => {
     expect(done.effect?.type).toBe("create_order");
   });
 
+  it("UBAH saat masih ada pertanyaan: pertanyaan yang sama diulang, bukan 'tidak tersedia'", async () => {
+    // Regresi: item yang belum dijawab dikirim ke revisi sebagai "hebel 3 kubik" (dengan jumlah & satuan),
+    // sehingga angka 3 dianggap ukuran dan bot bilang hebel tidak tersedia.
+    const r = await chat(DEMO_EXAMPLES[0].text, "UBAH semen jadi 30");
+    expect(r.state.step).toBe("klarifikasi");
+    expect(r.replies[0]).toContain("maksudnya yang mana");
+    expect(r.replies[0]).not.toContain("tidak tersedia");
+    expect(r.state.step === "klarifikasi" && r.state.questions[0].kind === "pilih" && r.state.questions[0].candidates.map((c) => c.sku)).toEqual(["HBL-075-M3", "HBL-10-M3"]);
+    expect(skus(r.state)).toEqual(["SMN-TR-50×30"]);
+    const done = await chat(DEMO_EXAMPLES[0].text, "UBAH semen jadi 30", "2");
+    expect(skus(done.state)).toEqual(["SMN-TR-50×30", "HBL-10-M3×3"]);
+  });
+
   it("besi full/banci ditanyakan", async () => {
     const r = await chat(DEMO_EXAMPLES[1].text, "banci");
     expect(skus(r.state)).toEqual(["SMN-GR-40×10", "BSI-10-BCI×50"]);

@@ -132,7 +132,8 @@ async function revise(state: Exclude<ConversationState, { step: "idle" }>, text:
   const pending = state.step === "klarifikasi" ? state.questions : [];
   const lines = [
     ...state.draft.lines.map((l) => ({ nama: l.nama, qty: l.qty, satuan: l.satuan })),
-    ...pending.map((q) => ({ nama: q.teks, qty: q.qty, satuan: q.satuan ?? "" })),
+    // Pakai nama barang ("hebel"), bukan teks asli ("hebel 3 kubik"): jumlah di teks asli akan terbaca sebagai ukuran.
+    ...pending.map((q) => ({ nama: q.nama, qty: q.qty, satuan: q.satuan ?? "" })),
   ];
   const built = await extractAndBuild(
     { text, currentOrder: { lines, catatanPengiriman: state.draft.catatanPengiriman } },
@@ -187,7 +188,9 @@ export async function handleMessage(state: ConversationState, message: IncomingM
     switch (state.step) {
       case "idle": {
         if (!text && !hasImages) return { state, replies: [msg.HELP] };
-        return await startNewOrder({ text: revisionText(text) ?? text, images: message.images }, deps);
+        // UBAH tanpa draf (belum pernah pesan, atau pesanan sudah dikonfirmasi) → jelaskan, jangan diproses sebagai pesanan.
+        if (revisionText(text) !== null && !hasImages) return { state, replies: [msg.NOTHING_TO_REVISE] };
+        return await startNewOrder({ text, images: message.images }, deps);
       }
 
       case "klarifikasi": {

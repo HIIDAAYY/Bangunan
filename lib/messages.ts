@@ -33,7 +33,11 @@ export const NO_ITEMS =
 
 export const CANCELLED = "Baik, pesanan dibatalkan. Kirim daftar baru kapan saja ya 👍";
 
-export const ASK_REVISION = "Mau diubah apa? Contoh: _UBAH semen jadi 30 sak_ atau _UBAH alamat ke Jl. Mawar 3_";
+export const NOTHING_TO_REVISE =
+  "Belum ada pesanan yang sedang menunggu konfirmasi, jadi belum ada yang bisa diubah. " +
+  "Kirim daftar pesanan dulu ya, contoh: _semen tiga roda 20 sak, kirim ke Jl. Melati 5_";
+
+export const ASK_REVISION ="Mau diubah apa? Contoh: _UBAH semen jadi 30 sak_ atau _UBAH alamat ke Jl. Mawar 3_";
 
 export const CONFIRM_HINT = "Balas *YA* untuk konfirmasi, atau *UBAH ...* untuk revisi (contoh: _UBAH semen jadi 30 sak_).";
 
